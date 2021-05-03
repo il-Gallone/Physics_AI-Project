@@ -6,9 +6,12 @@ public class Node : MonoBehaviour
 {
     //All nodes that this node can see
     public List<Node> connectedNodes;
+    public int number;
 
     void Start()
     {
+        number = int.Parse((this.name.Split('(')[1]).Split(')')[0]);
+
         //Find all nodes
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Node");
         //Loop for checking connected nodes
@@ -19,9 +22,9 @@ public class Node : MonoBehaviour
             {
                 //Check is every corner of this node visible to every corner of the node we're checking?
                 bool allCorners = true;
-                for(float x = -1; x <= 1; x+=2)
+                for(float x = -transform.localScale.x /2; x <= transform.localScale.x / 2; x+= transform.localScale.x)
                 {
-                    for(float y = -1; y<=1; y+=2)
+                    for(float y = -transform.localScale.x / 2; y<= transform.localScale.x / 2; y+= transform.localScale.x)
                     {
                         //Check all 4 corners
                         Vector2 start = (Vector2)transform.position + new Vector2(x/4,  y/4);

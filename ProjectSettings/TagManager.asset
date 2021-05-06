@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Node
+  - Road
+  - SandTrap
   layers:
   - Default
   - TransparentFX
@@ -47,6 +49,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2924308959
+    locked: 0
+  - name: Road
+    uniqueID: 567088111
     locked: 0
   - name: Above Road
     uniqueID: 4094289589

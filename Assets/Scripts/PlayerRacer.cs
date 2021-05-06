@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class PlayerRacer : RacerController
 {
-    public static float multiplier = 1;
 
     // Start is called before the first frame update
     void Start()

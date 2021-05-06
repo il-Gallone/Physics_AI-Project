@@ -10,6 +10,8 @@ public class RacerController : MonoBehaviour
     public float handling;
     public float weight;
 
+    public float multiplier = 1;
+
     public Rigidbody2D rigid2D;
 
     // Start is called before the first frame update

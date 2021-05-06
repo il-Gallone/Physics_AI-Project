@@ -4,54 +4,33 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    bool isTouchingRoad = false;
-    bool isTouchingSand = false;
+
+    public float baseMultiplier = 1;
+    public float sandMultiplier = 0.5f;
+    public float offTerrainMultiplier = 0.25f;
+
+    RacerController parent;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        parent = gameObject.GetComponentInParent<RacerController>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isTouchingRoad)
+        if (collision.tag == "SandTrap" && parent.multiplier > sandMultiplier)
         {
-            PlayerRacer.multiplier = 1;
+            parent.multiplier = sandMultiplier;
         }
-        else if (isTouchingSand)
+        if (collision.tag == "Grass" && parent.multiplier > offTerrainMultiplier)
         {
-            PlayerRacer.multiplier = 0.5f;
-        }
-        else
-        {
-            PlayerRacer.multiplier = 0.2f;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Road")
-        {
-            isTouchingRoad = true;
-            print("On Road");
-        }
-        if (collision.tag == "SandTrap")
-        {
-            isTouchingSand = true;
+            parent.multiplier = offTerrainMultiplier;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Road")
-        {
-            isTouchingRoad = false;
-            print("Off Road");
-        }
-        if (collision.tag == "SandTrap")
-        {
-            isTouchingSand = false;
-        }
+        parent.multiplier = baseMultiplier;
     }
 }

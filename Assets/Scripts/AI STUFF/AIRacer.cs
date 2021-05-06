@@ -25,7 +25,7 @@ public class AIRacer : RacerController {
 
     void Start() {
         nodes = GameObject.FindGameObjectsWithTag("Node");
-        mask = LayerMask.GetMask("wall");
+        mask = LayerMask.GetMask("OffRoad");
     }
 
     //returns distance between 2 points

@@ -7,7 +7,8 @@ public class AIRacer : RacerController {
     public float angle = 0;
     public float turnspeed = 0.01f;
     public float speed = 1f;
-    public GameObject target;
+    public GameObject[] target;
+    public int targetNum = 0;
     public Vector3 targetPos;
     public Vector3 lasttargetPos;
     public Vector3 dist;
@@ -20,6 +21,8 @@ public class AIRacer : RacerController {
     GameObject[] nodes;
     LayerMask mask;
 
+    public float Distance;
+
     void Start() {
         nodes = GameObject.FindGameObjectsWithTag("Node");
         mask = LayerMask.GetMask("wall");
@@ -31,7 +34,7 @@ public class AIRacer : RacerController {
     }
 
     void Update() {
-        targetPos = target.transform.position;
+        targetPos = target[targetNum].transform.position;
         cooldown--;
         int absc = 0;
         if (lasttargetPos != targetPos) {
@@ -243,6 +246,13 @@ public class AIRacer : RacerController {
         //rigid2D.AddForce(transform.up * mag * 1 * dot );
 
         //this.transform.position = this.transform.position + new Vector3(speed * Time.deltaTime * Mathf.Cos(angle), speed * Time.deltaTime * Mathf.Sin(angle), 0);
+
+        Distance = Vector3.Distance(transform.position, target[targetNum].transform.position);
+
+        if (Distance < 1)
+            targetNum++;
+        if (targetNum >= target.Length)
+            targetNum = 0;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

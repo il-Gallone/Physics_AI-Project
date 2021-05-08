@@ -6,8 +6,8 @@ public class GroundCheck : MonoBehaviour
 {
 
     public float baseMultiplier = 1;
-    public float sandMultiplier = 0.5f;
-    public float offTerrainMultiplier = 0.25f;
+    public float sandMultiplier = 0.8f;
+    public float offTerrainMultiplier = 0.7f;
 
     RacerController parent;
 

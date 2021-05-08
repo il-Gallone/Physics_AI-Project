@@ -45,11 +45,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: Grass
     uniqueID: 3943539109
     locked: 0
-  - name: Ground
+  - name: Sand
     uniqueID: 2924308959
+    locked: 0
+  - name: Water
+    uniqueID: 3134658451
+    locked: 0
+  - name: Collidable
+    uniqueID: 1012774237
     locked: 0
   - name: Road
     uniqueID: 567088111

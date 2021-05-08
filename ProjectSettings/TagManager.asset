@@ -18,7 +18,7 @@ TagManager:
   - Road
   - Minimap Racer
   - Offroad
-  - 
+  - Racer
   - 
   - 
   - 
@@ -56,6 +56,9 @@ TagManager:
     locked: 0
   - name: Above Road
     uniqueID: 4094289589
+    locked: 0
+  - name: AI
+    uniqueID: 565253123
     locked: 0
   - name: Player
     uniqueID: 596106039

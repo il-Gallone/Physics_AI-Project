@@ -5,8 +5,6 @@ using UnityEngine;
 public class AIRacer : RacerController {
 
     public float angle = 0;
-    public float turnspeed = 0.01f;
-    public float speed = 1f;
     public GameObject[] target;
     public int targetNum = 0;
     public Vector3 targetPos;
@@ -20,12 +18,14 @@ public class AIRacer : RacerController {
     public int seekCounter = 0;
     GameObject[] nodes;
     LayerMask mask;
+    LayerMask racerMask;
 
     public float Distance;
 
     void Start() {
         nodes = GameObject.FindGameObjectsWithTag("Node");
         mask = LayerMask.GetMask("Offroad");
+        racerMask = LayerMask.GetMask("Racer");
     }
 
     //returns distance between 2 points
@@ -195,30 +195,40 @@ public class AIRacer : RacerController {
         //}
 
 
-        rigid2D.AddForce(transform.up * acceleration * multiplier * Time.deltaTime);
+        rigid2D.AddForce(transform.up * acceleration * multiplier * weight * Time.deltaTime);
+
+        RaycastHit2D left = Physics2D.Raycast(transform.position, Quaternion.Euler(0, 0, 30) * transform.up, 1, mask);
+        RaycastHit2D right = Physics2D.Raycast(transform.position, Quaternion.Euler(0, 0, -30) * transform.up, 1, mask);
+        if(left)
+        {
+            rigid2D.AddTorque(-handling * weight * Time.deltaTime);
+        }
+        if(right)
+        {
+            rigid2D.AddTorque(handling * weight * Time.deltaTime);
+        }
 
 
         //rigid2D.AddForce(transform.up * acceleration * 1 * Time.deltaTime);
         if (rigid2D.velocity.magnitude > maxSpeed * multiplier)
         {
-            rigid2D.AddForce(-rigid2D.velocity.normalized * acceleration * Time.deltaTime);
+            rigid2D.AddForce(-rigid2D.velocity.normalized * acceleration * multiplier * weight * Time.deltaTime);
         }
         
         if(Mathf.Abs(distAngle*Mathf.Rad2Deg) > Mathf.Abs(rigid2D.angularVelocity/handling))
-            rigid2D.AddTorque(Mathf.Sign(distAngle)*Mathf.Min(handling, Mathf.Abs(distAngle*Mathf.Rad2Deg)) * Time.deltaTime);
+            rigid2D.AddTorque(Mathf.Sign(distAngle)*Mathf.Min(handling, Mathf.Abs(distAngle*Mathf.Rad2Deg)) * weight * Time.deltaTime);
         else
-            rigid2D.AddTorque(Mathf.Sign(-distAngle)*Mathf.Min(handling, rigid2D.angularVelocity)*Time.deltaTime);
+            rigid2D.AddTorque(Mathf.Sign(-distAngle)*Mathf.Min(handling, rigid2D.angularVelocity) * weight * Time.deltaTime);
         if (rigid2D.angularVelocity > maxTorque)
         {
-            rigid2D.AddTorque(-handling * Time.deltaTime);
+            rigid2D.AddTorque(-handling * weight * Time.deltaTime);
         }
         if (rigid2D.angularVelocity < -maxTorque)
         {
-            rigid2D.AddTorque(handling * Time.deltaTime);
+            rigid2D.AddTorque(handling * weight * Time.deltaTime);
         }
 
-        float mag = rigid2D.velocity.magnitude;
-        rigid2D.velocity = (transform.up*mag)/(Mathf.Abs(distAngle* distAngle/500.0f) + (Mathf.Abs(rigid2D.angularVelocity * rigid2D.angularVelocity / 5000000.0f))+1);
+        rigid2D.velocity = Quaternion.Euler(0, 0, rigid2D.angularVelocity * Time.deltaTime) * rigid2D.velocity / (Mathf.Abs(distAngle * distAngle / 500.0f) + (Mathf.Abs(rigid2D.angularVelocity * rigid2D.angularVelocity / 5000000.0f)) + 1);
 
         //if (mag == 0) {
         //    rigid2D.velocity = (transform.up * -5);

@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 596106039
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 454e4af267941da4b85293301042b0d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7772923796776586513}
+  transX: 1
+  transY: 1
 --- !u!114 &7772923796249377327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ GameObject:
   - component: {fileID: -2189448621701617487}
   m_Layer: 9
   m_Name: RedWing(Player)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +249,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 596106039
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 454e4af267941da4b85293301042b0d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -279,6 +281,21 @@ MonoBehaviour:
   weight: 1
   multiplier: 1
   rigid2D: {fileID: 7772923796776586514}
+  checkpoints: []
+  nodes: []
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  currentLap: 0
+  dists: []
+  checkpointNum: 0
+  checkpointPos: {x: 0, y: 0, z: 0}
+  angle: 0
+  dist: {x: 0, y: 0, z: 0}
+  distAngle: 0
+  shortest: Infinity
+  closestTarget: {x: 0, y: 0, z: 0}
+  facingWrong: 0
 --- !u!50 &7772923796776586514
 Rigidbody2D:
   serializedVersion: 4

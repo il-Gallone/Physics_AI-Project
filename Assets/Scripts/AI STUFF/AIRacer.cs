@@ -25,7 +25,7 @@ public class AIRacer : RacerController {
 
     void Start() {
         nodes = GameObject.FindGameObjectsWithTag("Node");
-        mask = LayerMask.GetMask("wall");
+        mask = LayerMask.GetMask("Offroad");
     }
 
     //returns distance between 2 points
@@ -91,9 +91,7 @@ public class AIRacer : RacerController {
 
             //find node with smallest value (closest to target)
             shortest = Mathf.Infinity;
-        float shortest2 = Mathf.Infinity;
         int c1 = 0;
-        int c2 = 0;
         for (int c = 0; c < nodes.Length; c++) {
             try {
                 GameObject node = GameObject.Find("Node (" + c + ")");
@@ -105,7 +103,7 @@ public class AIRacer : RacerController {
                 //}
 
                 bool allCorners = true;
-                float scale = 3;
+                float scale = 1;
                 for (float x = scale*-transform.localScale.x / 2; x <= scale * transform.localScale.x / 2; x += scale * transform.localScale.x) {
                     for (float y = scale * -transform.localScale.x / 2; y <= scale * transform.localScale.x / 2; y += scale * transform.localScale.x) {
                         Vector3 start = transform.position + new Vector3(x / 4, y / 4, 0);
@@ -116,15 +114,12 @@ public class AIRacer : RacerController {
                          }
                     }
                 }
-                if (allCorners) {
-                    if (dists[c] < shortest) {
-                        shortest2 = shortest;
-                        c2 = c1;
+                if (allCorners)
+                {
+                    if (dists[c] < shortest)
+                    {
                         shortest = dists[c];
                         c1 = c;
-                    } else if (dists[c] < shortest2) {
-                        shortest2 = dists[c];
-                        c2 = c;
                     }
                 }
 
@@ -146,17 +141,28 @@ public class AIRacer : RacerController {
                 }*/
             } catch { }
         }
+        if(shortest == Mathf.Infinity)
+        {
+            float[] dists2 = new float[nodes.Length];
+            for (int c = 0; c < nodes.Length; c++)
+            {
+                try
+                {
+                    GameObject node = GameObject.Find("Node (" + c + ")");
+                    dists2[c] = Vector3.Distance(node.transform.position, transform.position);
+                    if (dists2[c] < shortest)
+                    {
+                        shortest = dists2[c];
+                        c1 = c;
+                    }
+                }
+                catch { }
+            }
+        }
 
         //if close enough go directly to target
         GameObject n1 = GameObject.Find("Node (" + c1 + ")");
-        if (c1 == absc) {
-            if (distance(this.transform.position, n1.transform.position) < 0.5) {
-                c2 = c1;
-            }
-        }
-        c2 = c1;
-        GameObject n2 = GameObject.Find("Node (" + c2 + ")");
-        closestTarget = (n1.transform.position + n2.transform.position) / 2.0f;
+        closestTarget = n1.transform.position;
 
 
         RaycastHit2D finalhit = Physics2D.Raycast(targetPos, this.transform.position - targetPos, distance(this.transform.position, targetPos), mask);
@@ -165,6 +171,7 @@ public class AIRacer : RacerController {
                 closestTarget = targetPos;
             }
         }
+        Debug.DrawLine(closestTarget, transform.position);
 
         //steering
         dist = closestTarget - this.transform.position;
@@ -188,42 +195,19 @@ public class AIRacer : RacerController {
         //}
 
 
-        RaycastHit2D forward = Physics2D.Raycast(transform.position, transform.up, 1, mask);
-        RaycastHit2D left = Physics2D.Raycast(transform.position, Quaternion.Euler(0, 0, 30) * transform.up , 1, mask);
-        RaycastHit2D right = Physics2D.Raycast(transform.position, Quaternion.Euler(0, 0, -30) * transform.up , 1, mask);
-        
-        if (forward) {
-            rigid2D.AddForce(-transform.up * acceleration * 1 * Time.deltaTime);
-            //Debug.DrawRay(transform.position, transform.up, Color.red);
+        rigid2D.AddForce(transform.up * acceleration * multiplier * Time.deltaTime);
 
-        } else {
-            rigid2D.AddForce(transform.up * acceleration * 1 * Time.deltaTime);
-            //Debug.DrawRay(transform.position, transform.up, Color.green);
-        }
-
-        float mag = rigid2D.velocity.magnitude;
-        if (left) {
-            rigid2D.AddTorque(Mathf.Max(mag, 2) * handling * -1 / 2.0f * Time.deltaTime);
-           // Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, 30) * transform.up, Color.red);
-        } else {
-            //Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, 30) * transform.up, Color.green);
-        }
-
-        
-        if (right) {
-            rigid2D.AddTorque(Mathf.Max(mag, 2) * handling * 1 / 2.0f * Time.deltaTime);
-            //Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, -30) * transform.up, Color.red);
-        } else {
-            //Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, -30) * transform.up, Color.green);
-        }
 
         //rigid2D.AddForce(transform.up * acceleration * 1 * Time.deltaTime);
-        if (rigid2D.velocity.magnitude > maxSpeed)
+        if (rigid2D.velocity.magnitude > maxSpeed * multiplier)
         {
             rigid2D.AddForce(-rigid2D.velocity.normalized * acceleration * Time.deltaTime);
         }
         
-        rigid2D.AddTorque(Mathf.Max(mag, 2) * handling * (Mathf.Sign(distAngle)/4.0f + distAngle/2.0f) * Time.deltaTime);
+        if(Mathf.Abs(distAngle*Mathf.Rad2Deg) > Mathf.Abs(rigid2D.angularVelocity/handling))
+            rigid2D.AddTorque(Mathf.Sign(distAngle)*Mathf.Min(handling, Mathf.Abs(distAngle*Mathf.Rad2Deg)) * Time.deltaTime);
+        else
+            rigid2D.AddTorque(Mathf.Sign(-distAngle)*Mathf.Min(handling, rigid2D.angularVelocity)*Time.deltaTime);
         if (rigid2D.angularVelocity > maxTorque)
         {
             rigid2D.AddTorque(-handling * Time.deltaTime);
@@ -232,9 +216,8 @@ public class AIRacer : RacerController {
         {
             rigid2D.AddTorque(handling * Time.deltaTime);
         }
-        rigid2D.angularVelocity *= 0.99f;
 
-        //float mag = rigid2D.velocity.magnitude;
+        float mag = rigid2D.velocity.magnitude;
         rigid2D.velocity = (transform.up*mag)/(Mathf.Abs(distAngle* distAngle/500.0f) + (Mathf.Abs(rigid2D.angularVelocity * rigid2D.angularVelocity / 5000000.0f))+1);
 
         //if (mag == 0) {
@@ -255,12 +238,4 @@ public class AIRacer : RacerController {
             targetNum = 0;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if hit a wall just turn 180 degrees
-        if (cooldown < 0) {
-            angle += 3.14159265f;
-            cooldown = 2;
-        }
-    }
 }

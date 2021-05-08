@@ -5,6 +5,8 @@ using UnityEngine;
 public class SetPos : MonoBehaviour
 {
     public Transform player;
+    public bool transX = true;
+    public bool transY = true;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,19 @@ public class SetPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+        float newX, newY;
+        
+        if (transX == true)
+            newX = player.position.x;
+        else
+            newX = transform.position.x;
+
+        if (transY == true)
+            newY = player.position.y;
+        else
+            newY = transform.position.y;
+
+        // Only change values if the values are true
+        transform.position = new Vector3(newX, newY, transform.position.z);
     }
 }

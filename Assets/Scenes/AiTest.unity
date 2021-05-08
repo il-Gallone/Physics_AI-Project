@@ -2598,6 +2598,10 @@ PrefabInstance:
       propertyPath: target.Array.data[3]
       value: 
       objectReference: {fileID: 239935478}
+    - target: {fileID: 2403651483670206769, guid: 79de010f5c8f0e841be11d1bc946c220, type: 3}
+      propertyPath: playerCatchupModifier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2403651483670206771, guid: 79de010f5c8f0e841be11d1bc946c220, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2653,7 +2657,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6968461404726310932, guid: 073f3d7a54a522f47a8708b86a0d83f0, type: 3}
       propertyPath: m_Name
-      value: Checkpoint
+      value: Checkpoint (0)
       objectReference: {fileID: 0}
     - target: {fileID: 6968461404726310938, guid: 073f3d7a54a522f47a8708b86a0d83f0, type: 3}
       propertyPath: m_RootOrder

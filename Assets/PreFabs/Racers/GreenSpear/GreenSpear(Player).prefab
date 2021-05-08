@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 4.5
-  acceleration: 350
+  acceleration: 380
   maxTorque: 135
   handling: 70
   weight: 0.75

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIRacer : RacerController {
 
 
-    public float playerCatchupModifier;
+    public float playerCatchupModifier = 1;
 
     void Start() {
 
@@ -23,7 +23,6 @@ public class AIRacer : RacerController {
 
         //steering
         FindDistances();
-
         CalculateCatchupModifier();
 
         rigid2D.AddForce(transform.up * acceleration * multiplier * playerCatchupModifier * weight * Time.deltaTime);
@@ -81,11 +80,11 @@ public class AIRacer : RacerController {
         int checkpointDifference = (checkpointNum + currentLap*checkpoints.Length) - (player.checkpointNum + player.currentLap*checkpoints.Length);
         if (checkpointDifference > 0)
         {
-            playerCatchupModifier = Mathf.Pow(0.98f, checkpointDifference);
+            playerCatchupModifier = Mathf.Pow(0.92f, checkpointDifference);
         }
         else if (checkpointDifference < 0)
         {
-            playerCatchupModifier = Mathf.Pow(1.005f, -checkpointDifference);
+            playerCatchupModifier = Mathf.Pow(1.05f, -checkpointDifference);
         }
         else
         {

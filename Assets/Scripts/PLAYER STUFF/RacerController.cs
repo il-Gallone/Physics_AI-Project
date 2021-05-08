@@ -198,14 +198,14 @@ public class RacerController : MonoBehaviour
         distAngle = Mathf.Atan(dist.y / dist.x) + ((dist.x < 0) ? Mathf.PI : 0);
         angle = (this.transform.rotation.eulerAngles.z + 90) *Mathf.Deg2Rad;
         while (angle > Mathf.PI) angle -= 2 * Mathf.PI;
-        while (angle < -3.14159265f) angle += 2 * Mathf.PI;
+        while (angle < -Mathf.PI) angle += 2 * Mathf.PI;
         //Debug.Log("----------------");
         //Debug.Log(distAngle * 180.0f / 3.14159265f);
         //Debug.Log(angle * 180.0f / 3.14159265f);
         distAngle -= angle;
         //Debug.Log(distAngle * 180.0f / 3.14159265f);
         while (distAngle > Mathf.PI) distAngle -= 2 * Mathf.PI;
-        while (distAngle < Mathf.PI) distAngle += 2 * Mathf.PI;
+        while (distAngle < -Mathf.PI) distAngle += 2 * Mathf.PI;
         //Original Code created by Joshua, used a manually typed value for pi, which while clever is slightly less readable
     }
 

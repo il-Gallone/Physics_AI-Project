@@ -16,22 +16,30 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject player;
         if(IDSpawn1 == GameManager.instance.playerRacer)
         {
-            Instantiate(spawn1, transform.position, transform.rotation);
+            player = Instantiate(spawn1, transform.position, transform.rotation);
         }
         else if (IDSpawn2 == GameManager.instance.playerRacer)
         {
-            Instantiate(spawn2, transform.position, transform.rotation);
+            player = Instantiate(spawn2, transform.position, transform.rotation);
         }
         else if (IDSpawn3 == GameManager.instance.playerRacer)
         {
-            Instantiate(spawn3, transform.position, transform.rotation);
+            player = Instantiate(spawn3, transform.position, transform.rotation);
         }
         else if (IDSpawn4 == GameManager.instance.playerRacer)
         {
-            Instantiate(spawn4, transform.position, transform.rotation);
+            player = Instantiate(spawn4, transform.position, transform.rotation);
         }
+        else
+        {
+            GameManager.instance.playerRacer = IDSpawn1;
+            player = Instantiate(spawn1, transform.position, transform.rotation);
+        }
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SetPos>().player = player.transform;
+        GameObject.FindGameObjectWithTag("Backdrop").GetComponent<MoveSky>().player = player;
     }
 
     // Update is called once per frame

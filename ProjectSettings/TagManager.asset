@@ -10,6 +10,7 @@ TagManager:
   - Grass
   - Checkpoint
   - AI
+  - Backdrop
   layers:
   - Default
   - TransparentFX

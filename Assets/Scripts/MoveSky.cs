@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveSky : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject player;
     public float multiplier;
     public float offset;
 
@@ -17,6 +17,6 @@ public class MoveSky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x * multiplier - offset, transform.position.y);
+        transform.position = new Vector3(player.transform.position.x * multiplier - offset, transform.position.y);
     }
 }

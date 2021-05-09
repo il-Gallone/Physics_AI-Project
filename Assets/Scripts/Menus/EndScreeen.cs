@@ -66,7 +66,7 @@ public class EndScreeen : MonoBehaviour
                 Placement.GetComponent<TextMeshProUGUI>().color = Color.black;
                 PlacementFront.GetComponent<TextMeshProUGUI>().color = new Color(0.6f, 0.45f, 0.25f);
             }
-            if(placement < 3)
+            if(placement > 3)
             {
                 Placement.GetComponent<TextMeshProUGUI>().text = placement.ToString()+"th Place";
                 PlacementFront.GetComponent<TextMeshProUGUI>().text = placement.ToString() + "th Place";

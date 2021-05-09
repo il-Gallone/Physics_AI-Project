@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CharacterMenu : MonoBehaviour
 {
     public GameObject startButton;
+
+    public Button characterButton1;
+    public Button characterButton2;
+    public Button characterButton3;
+    public Button characterButton4;
+    public Button lastSelectedButton;
 
     public GameObject text;
     public GameObject textBack;
@@ -62,4 +69,36 @@ public class CharacterMenu : MonoBehaviour
         text.GetComponent<TextMeshProUGUI>().color = Color.black;
         textBack.GetComponent<TextMeshProUGUI>().color = Color.white;
     }
+
+    private void Update()
+    {
+        if(startButton.GetComponent<Button>().interactable)
+        {
+            if(Input.GetAxis("MenuVertical") < 0)
+            {
+                startButton.GetComponent<Button>().Select();
+            }
+            if (Input.GetAxis("MenuVertical") > 0)
+            {
+                lastSelectedButton.Select();
+            }
+        }
+        if(EventSystem.current.currentSelectedGameObject == characterButton1.gameObject)
+        {
+            lastSelectedButton = characterButton1;
+        }
+        if (EventSystem.current.currentSelectedGameObject == characterButton2.gameObject)
+        {
+            lastSelectedButton = characterButton2;
+        }
+        if (EventSystem.current.currentSelectedGameObject == characterButton3.gameObject)
+        {
+            lastSelectedButton = characterButton3;
+        }
+        if (EventSystem.current.currentSelectedGameObject == characterButton4.gameObject)
+        {
+            lastSelectedButton = characterButton4;
+        }
+    }
+
 }

@@ -3291,6 +3291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartMenu: {fileID: 1232379542}
+  SelectStart: {fileID: 1142174390}
 --- !u!1 &656000331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5866,7 +5867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 885795820}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &856281491
@@ -5968,7 +5969,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1232379544}
-        m_TargetAssemblyTypeName: StatMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -6030,7 +6031,7 @@ GameObject:
   - component: {fileID: 899039933}
   - component: {fileID: 899039932}
   m_Layer: 5
-  m_Name: Quit Button (1)
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6101,7 +6102,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1232379544}
-        m_TargetAssemblyTypeName: StatMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -6525,7 +6526,7 @@ GameObject:
   - component: {fileID: 1142174391}
   - component: {fileID: 1142174390}
   m_Layer: 5
-  m_Name: Quit Button (2)
+  m_Name: HowToPlay Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6596,7 +6597,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1232379544}
-        m_TargetAssemblyTypeName: StatMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
         m_MethodName: HowToPlay
         m_Mode: 1
         m_Arguments:
@@ -6840,6 +6841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterMenu: {fileID: 1954238212}
   InstructionMenu: {fileID: 575800160}
+  SelectHowToPlay: {fileID: 957510316}
+  SelectPlayGame: {fileID: 555786592}
 --- !u!1 &1280985773
 GameObject:
   m_ObjectHideFlags: 0
@@ -7968,6 +7971,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 346519284}
+  characterButton1: {fileID: 555786592}
+  characterButton2: {fileID: 2100850102}
+  characterButton3: {fileID: 1390991912}
+  characterButton4: {fileID: 1689527006}
+  lastSelectedButton: {fileID: 0}
   text: {fileID: 1025553778}
   textBack: {fileID: 560089775}
 --- !u!1 &2018012672

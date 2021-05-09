@@ -2,25 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CharacterMenu : MonoBehaviour
 {
-
     public GameObject startButton;
-    public int playerSelector;
 
     public GameObject text;
     public GameObject textBack;
 
-    public void StartGame()
-    {
 
+    private AssetBundle myLoadedAssetBundle;
+    private string[] scenePaths;
+
+    private void Start()
+    {
+    }
+
+    public void StartGame(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void selectPlayer1()
     {
-        playerSelector = 1;
+        GameManager.playerType = 1;
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Red Wing";
         textBack.GetComponent<TextMeshProUGUI>().text = "Red Wing";
@@ -29,7 +36,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void selectPlayer2()
     {
-        playerSelector = 2;
+        GameManager.playerType = 2;
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Green Spear";
         textBack.GetComponent<TextMeshProUGUI>().text = "Green Spear";
@@ -38,7 +45,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void selectPlayer3()
     {
-        playerSelector = 3;
+        GameManager.playerType = 3;
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Blue Pointer";
         textBack.GetComponent<TextMeshProUGUI>().text = "Blue Pointer";
@@ -47,7 +54,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void selectPlayer4()
     {
-        playerSelector = 4;
+        GameManager.playerType = 4;
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Black Bruiser";
         textBack.GetComponent<TextMeshProUGUI>().text = "Black Bruiser";

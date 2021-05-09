@@ -27,7 +27,7 @@ public class CharacterMenu : MonoBehaviour
 
     public void selectPlayer1()
     {
-        GameManager.playerType = 1;
+        GameManager.instance.playerRacer = "RedWing";
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Red Wing";
         textBack.GetComponent<TextMeshProUGUI>().text = "Red Wing";
@@ -36,7 +36,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void selectPlayer2()
     {
-        GameManager.playerType = 2;
+        GameManager.instance.playerRacer = "GreenSpear";
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Green Spear";
         textBack.GetComponent<TextMeshProUGUI>().text = "Green Spear";
@@ -45,7 +45,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void selectPlayer3()
     {
-        GameManager.playerType = 3;
+        GameManager.instance.playerRacer = "BluePointer";
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Blue Pointer";
         textBack.GetComponent<TextMeshProUGUI>().text = "Blue Pointer";
@@ -54,7 +54,7 @@ public class CharacterMenu : MonoBehaviour
     }
     public void selectPlayer4()
     {
-        GameManager.playerType = 4;
+        GameManager.instance.playerRacer = "BlackBruiser";
         startButton.GetComponent<Button>().interactable = true;
         text.GetComponent<TextMeshProUGUI>().text = "Black Bruiser";
         textBack.GetComponent<TextMeshProUGUI>().text = "Black Bruiser";

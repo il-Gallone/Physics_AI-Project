@@ -22,6 +22,7 @@ public class CharacterMenu : MonoBehaviour
 
     public void StartGame(string sceneName)
     {
+        GameManager.instance.countdown = 5;
         SceneManager.LoadScene(sceneName);
     }
 

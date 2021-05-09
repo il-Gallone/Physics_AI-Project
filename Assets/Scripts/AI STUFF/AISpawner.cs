@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class AISpawner : MonoBehaviour
 {
+    public string primarySpawnID;
+    public GameObject primarySpawn;
+    public GameObject secondarySpawn;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(GameManager.instance.playerRacer != primarySpawnID)
+        {
+            Instantiate(primarySpawn, transform.position, transform.rotation);
+        }
+        else
+        {
+            Instantiate(secondarySpawn, transform.position, transform.rotation);
+        }
     }
 }

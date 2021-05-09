@@ -9,6 +9,7 @@ TagManager:
   - SandTrap
   - Grass
   - Checkpoint
+  - AI
   layers:
   - Default
   - TransparentFX

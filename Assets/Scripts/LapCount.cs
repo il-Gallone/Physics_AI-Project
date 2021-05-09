@@ -8,7 +8,7 @@ public class LapCount : MonoBehaviour
     public GameObject LapText;
     public GameObject LapText_Front;
 
-    public 
+    public GameObject EndScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class LapCount : MonoBehaviour
         {
             LapText.GetComponent<TextMeshPro>().text = "Race Complete";
             LapText_Front.GetComponent<TextMeshPro>().text = "Race Complete";
+            EndScreen.SetActive(true);
         }
         else
         {

@@ -5,8 +5,8 @@ using TMPro;
 
 public class LapCount : MonoBehaviour
 {
-    public GameObject CountDownText;
-    public GameObject CountDownText_Front;
+    public GameObject LapText;
+    public GameObject LapText_Front;
 
     public 
 
@@ -23,13 +23,13 @@ public class LapCount : MonoBehaviour
 
         if (lap > 3)
         {
-            CountDownText.GetComponent<TextMeshPro>().text = "Race Complete";
-            CountDownText_Front.GetComponent<TextMeshPro>().text = "Race Complete";
+            LapText.GetComponent<TextMeshPro>().text = "Race Complete";
+            LapText_Front.GetComponent<TextMeshPro>().text = "Race Complete";
         }
         else
         {
-        CountDownText.GetComponent<TextMeshPro>().text = "Lap " + lap;
-        CountDownText_Front.GetComponent<TextMeshPro>().text = "Lap " + lap;
+        LapText.GetComponent<TextMeshPro>().text = "Lap " + lap;
+        LapText_Front.GetComponent<TextMeshPro>().text = "Lap " + lap;
         }
 
         

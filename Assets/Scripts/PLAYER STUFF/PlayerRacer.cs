@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 public class PlayerRacer : RacerController
 {
 
+    public bool facingWrong = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,6 @@ public class PlayerRacer : RacerController
     // Update is called once per frame
     void Update()
     {
-
         rigid2D.AddForce(transform.up * acceleration * Input.GetAxis("Vertical") * weight * multiplier * Time.deltaTime);
         if (rigid2D.velocity.magnitude > maxSpeed * multiplier)
         {
@@ -32,5 +33,20 @@ public class PlayerRacer : RacerController
         {
             rigid2D.AddTorque(handling * weight * Time.deltaTime);
         }
+
+        CalculateNodeDistance();
+        FindClosestToCheckpoint();
+        FindDistances();
+
+        if (Mathf.Abs(distAngle) > Mathf.PI / 2)
+        {
+            facingWrong = true;
+        }
+        else
+        {
+            facingWrong = false;
+        }
+
+        CheckForNearbyCheckpoint();
     }
 }

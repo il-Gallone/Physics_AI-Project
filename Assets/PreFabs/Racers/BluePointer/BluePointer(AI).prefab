@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 565253123
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e6ad816b51cab2748919f539e8821171, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,25 +99,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67b024cb61fd314f8a688c2d3da1f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 8
-  acceleration: 185
+  maxSpeed: 7.7
+  acceleration: 165
   maxTorque: 80
   handling: 40
   weight: 1.5
   multiplier: 1
   rigid2D: {fileID: 6622143061154657240}
+  checkpoints: []
+  nodes: []
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  currentLap: 0
+  dists: []
+  checkpointNum: 0
+  checkpointPos: {x: 0, y: 0, z: 0}
   angle: 0
-  target: []
-  targetNum: 0
-  targetPos: {x: 0, y: 0, z: 0}
-  lasttargetPos: {x: 0, y: 0, z: 0}
   dist: {x: 0, y: 0, z: 0}
   distAngle: 0
   shortest: Infinity
   closestTarget: {x: 0, y: 0, z: 0}
-  dists: []
-  seekCounter: 0
-  Distance: 0
+  playerCatchupModifier: 0
 --- !u!50 &6622143061154657240
 Rigidbody2D:
   serializedVersion: 4
@@ -197,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 6622143061682259193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 14, y: 14, z: 1}
   m_Children: []
   m_Father: {fileID: 6622143061154657243}
   m_RootOrder: 1
@@ -240,7 +243,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 565253123
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: e6ad816b51cab2748919f539e8821171, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -266,6 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6622143061154657243}
+  transX: 1
+  transY: 1
 --- !u!114 &6622143061682259173
 MonoBehaviour:
   m_ObjectHideFlags: 0

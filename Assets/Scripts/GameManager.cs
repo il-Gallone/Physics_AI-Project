@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //Making sure there is only one GameManager
         if (instance == null)
         {
             instance = this;
@@ -28,12 +29,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //stops the racers from moving before the race starts
         if(countdown > 0)
         {
             countdown -= Time.deltaTime/2;
         }
         try
         {
+            //tracking the player's current lap and position
             PlayerRacer player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRacer>();
             playerLap = player.currentLap + 1;
             playerPosition = 1;

@@ -17,6 +17,7 @@ public class SetPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //This allows objects to follow the player, either only in 1 axis or both.
         float newX, newY;
         
         if (transX == true)

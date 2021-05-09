@@ -29,10 +29,12 @@ public class CharacterMenu : MonoBehaviour
 
     public void StartGame(string sceneName)
     {
+        //When start is clicked set the countdown, and load the track
         GameManager.instance.countdown = 3.5f;
         SceneManager.LoadScene(sceneName);
     }
 
+    //these 4 functions allow for character selection and enable the start button
     public void selectPlayer1()
     {
         GameManager.instance.playerRacer = "RedWing";
@@ -72,6 +74,7 @@ public class CharacterMenu : MonoBehaviour
 
     private void Update()
     {
+        //due to some finicky menu controls, this allows a controller to select the start menu button
         if(startButton.GetComponent<Button>().interactable)
         {
             if(Input.GetAxis("MenuVertical") < 0)
@@ -83,6 +86,7 @@ public class CharacterMenu : MonoBehaviour
                 lastSelectedButton.Select();
             }
         }
+        //this is how we determine where to return if we don't want to start the game
         if(EventSystem.current.currentSelectedGameObject == characterButton1.gameObject)
         {
             lastSelectedButton = characterButton1;

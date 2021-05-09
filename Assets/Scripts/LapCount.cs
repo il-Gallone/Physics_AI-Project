@@ -21,6 +21,7 @@ public class LapCount : MonoBehaviour
     {
         int lap = GameManager.instance.playerLap;
 
+        //updating the lap visuals
         if (lap > 3)
         {
             LapText.GetComponent<TextMeshPro>().text = "Race Complete";

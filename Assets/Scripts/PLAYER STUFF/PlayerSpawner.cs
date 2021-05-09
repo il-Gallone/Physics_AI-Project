@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    //prefab IDs and prefabs
     public string IDSpawn1;
     public GameObject spawn1;
     public string IDSpawn2;
@@ -16,6 +17,7 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //if the ID matches then spawn that prefab
         GameObject player;
         if(IDSpawn1 == GameManager.instance.playerRacer)
         {
@@ -35,9 +37,11 @@ public class PlayerSpawner : MonoBehaviour
         }
         else
         {
+            // if there is no match default to 1st ID and set Gamemanager's player to that
             GameManager.instance.playerRacer = IDSpawn1;
             player = Instantiate(spawn1, transform.position, transform.rotation);
         }
+        //Attach the player to the required scripts for camera following and background effects
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SetPos>().player = player.transform;
         GameObject.FindGameObjectWithTag("Backdrop").GetComponent<MoveSky>().player = player;
     }

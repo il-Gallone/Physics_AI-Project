@@ -17,6 +17,7 @@ public class PositionTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Do various text changes based on position
         int position = GameManager.instance.playerPosition;
 
         if (position == 1)

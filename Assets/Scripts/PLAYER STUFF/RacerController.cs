@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class RacerController : MonoBehaviour
 {
+    //racer's stats
     public float maxSpeed;
     public float acceleration;
     public float maxTorque;
     public float handling;
     public float weight;
 
+    //terrain speed modifier
     public float multiplier = 1;
 
+    //used for AI pathfinding/Player Position Tracking
     public Rigidbody2D rigid2D;
     public GameObject[] checkpoints;
     public GameObject[] nodes;
     public LayerMask mask;
 
+    //Various variables for tracking purposes
     public int currentLap = 0;
     public float[] dists;
     public int checkpointNum = 0;
@@ -30,6 +34,7 @@ public class RacerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //Setting the racer's stats and finding the checkpoints before the race starts
         rigid2D.mass = weight;
         rigid2D.drag = 1 / weight;
         rigid2D.angularDrag = 2 * weight;
@@ -56,6 +61,7 @@ public class RacerController : MonoBehaviour
             dists[i] = Mathf.Infinity;
             try
             {
+                //uses Djikstra's algorithm to find the closest node to the checkpoint
                 RaycastHit2D hit = (Physics2D.Raycast(checkpointPos, nodes[i].transform.position - checkpointPos, Vector3.Distance(nodes[i].transform.position, checkpointPos), mask));
                 if (!hit)
                 {
@@ -159,6 +165,7 @@ public class RacerController : MonoBehaviour
             }
             catch { }
         }
+        //Edgecase incase the AI can't find a node through normal means, just find the closest node overall
         if (shortest == Mathf.Infinity)
         {
             float[] dists2 = new float[nodes.Length];
@@ -194,6 +201,7 @@ public class RacerController : MonoBehaviour
 
     public void FindDistances()
     {
+        //calculating the angles and distances between player and checkpoints
         dist = closestTarget - this.transform.position;
         distAngle = Mathf.Atan(dist.y / dist.x) + ((dist.x < 0) ? Mathf.PI : 0);
         angle = (this.transform.rotation.eulerAngles.z + 90) *Mathf.Deg2Rad;
@@ -211,10 +219,12 @@ public class RacerController : MonoBehaviour
 
     public void CheckForNearbyCheckpoint()
     {
+        //If really close to a checkpoint progress through the track
         float distance = Vector3.Distance(transform.position, checkpoints[checkpointNum].transform.position);
 
         if (distance < 2)
             checkpointNum++;
+        //reaching the end of the list means we've done a lap
         if (checkpointNum >= checkpoints.Length)
         {
             checkpointNum = 0;

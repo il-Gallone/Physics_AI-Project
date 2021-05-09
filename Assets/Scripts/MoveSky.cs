@@ -17,6 +17,7 @@ public class MoveSky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //used for fancy background effects
         transform.position = new Vector3(player.transform.position.x * multiplier - offset, transform.position.y);
     }
 }

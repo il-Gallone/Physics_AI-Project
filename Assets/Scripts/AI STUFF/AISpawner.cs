@@ -11,6 +11,7 @@ public class AISpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //If the player is taking the place of this racer, instead of the default racer, then switch to the default racer
         if(GameManager.instance.playerRacer != primarySpawnID)
         {
             Instantiate(primarySpawn, transform.position, transform.rotation);

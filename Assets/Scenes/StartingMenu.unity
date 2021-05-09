@@ -554,14 +554,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD: To Move
+  m_text: 'Accelerate: W / Right Trigger
 
-    M: Toggle MiniMap
+    Reverse: S / Left Trigger
 
-    Goal:
+    Turn:
+    A and D / Left Joystick
 
-    Finish the race in
-    first'
+    Goal: Finish the race in first'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e62b3bd5f7f8740ad8aa0c390b338c, type: 2}
   m_sharedMaterial: {fileID: 3867507721839154651, guid: 88e62b3bd5f7f8740ad8aa0c390b338c, type: 2}
@@ -1030,6 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLap: 0
+  playerPosition: 0
   playerRacer: 
   countdown: 5
 --- !u!4 &465797957
@@ -6703,14 +6704,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD: To Move
+  m_text: 'Accelerate: W / Right Trigger
 
-    M: Toggle MiniMap
+    Reverse: S / Left Trigger
 
-    Goal:
+    Turn:
+    A and D / Left Joystick
 
-    Finish the race in
-    first'
+    Goal: Finish the race in first'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e62b3bd5f7f8740ad8aa0c390b338c, type: 2}
   m_sharedMaterial: {fileID: 3867507721839154651, guid: 88e62b3bd5f7f8740ad8aa0c390b338c, type: 2}

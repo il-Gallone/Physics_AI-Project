@@ -14,6 +14,7 @@ public class StartMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        //When Play is clicked, open the character selector and close the start screen
         CharacterMenu.SetActive(true);
         SelectPlayGame.Select();
         this.gameObject.SetActive(false);
@@ -21,12 +22,14 @@ public class StartMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        //If quit is clicked then close the game
         Debug.Log("Quit Game");
         Application.Quit();
     }
 
     public void HowToPlay()
     {
+        //When How to Play is clicked open the instruction menu and close the start screen
         InstructionMenu.SetActive(true);
         SelectHowToPlay.Select();
         this.gameObject.SetActive(false);

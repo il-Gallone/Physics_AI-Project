@@ -15,6 +15,7 @@ public class CountDown : MonoBehaviour
 
     private void Update()
     {        
+        //used to signal the start of the race when the program starts
         if (GameManager.instance.countdown <= 0)
         {
             CountDownText.GetComponent<TextMeshPro>().text = "GO!";

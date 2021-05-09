@@ -6,18 +6,22 @@ using TMPro;
 
 public class EndScreeen : MonoBehaviour
 {
+    //The text game objects
     public GameObject Heading;
     public GameObject HeadingFront;
     public GameObject Placement;
     public GameObject PlacementFront;
 
-    public int tick = 0;
+    //Time before returning to the main screen
+    public float waitTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Find the player's final position at the end of the last lap
         int placement = GameManager.instance.playerPosition;
 
+        //Various colour and word choices based on postion
         if (placement == 1)
         {
             Heading.GetComponent<TextMeshProUGUI>().text = "Victory!!!";
@@ -62,10 +66,10 @@ public class EndScreeen : MonoBehaviour
                 Placement.GetComponent<TextMeshProUGUI>().color = Color.black;
                 PlacementFront.GetComponent<TextMeshProUGUI>().color = new Color(0.6f, 0.45f, 0.25f);
             }
-            if(placement == 4)
+            if(placement < 3)
             {
-                Placement.GetComponent<TextMeshProUGUI>().text = "4th Place";
-                PlacementFront.GetComponent<TextMeshProUGUI>().text = "4th Place";
+                Placement.GetComponent<TextMeshProUGUI>().text = placement.ToString()+"th Place";
+                PlacementFront.GetComponent<TextMeshProUGUI>().text = placement.ToString() + "th Place";
 
 
                 Placement.GetComponent<TextMeshProUGUI>().color = Color.black;
@@ -77,8 +81,8 @@ public class EndScreeen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tick++;
-        if (tick >= 250)
+        waitTime += Time.deltaTime;
+        if (waitTime >= 4)
         {
             SceneManager.LoadScene("StartingMenu");
         }
